@@ -1,24 +1,43 @@
-/// 最大公约数 a/b=c a%b=d
 #include <stdio.h>
+#include <string.h>
 
-int function(int a, int b);
+char *get_char(char *a);
+
+typedef struct function
+{
+    char *name;
+    char *number;
+} person;
 
 int main(void)
 {
-    int a, b;
-    printf("a=? b=?\n");
-    scanf("%i%i", &a, &b);
-    b = function(a, b);
-    printf("Greatest Common Divisor: %i", b);
+    person people[3];
+
+    people[0].name = "Dad";
+    people[0].number = "001";
+
+    people[1].name = "Mom";
+    people[1].number = "002";
+
+    people[2].name = "Bro";
+    people[2].number = "003";
+
+    char *name = get_char(name);
+    for (int i = 0; i < 3; i++)
+    {
+        if (strcmp(people[i].name, name) == 0)
+        {
+            printf("Number: %s.\n", people[i].number[i]);
+            return 0;
+        }
+    }
+    printf("Not Found.");
+    return 1;
 }
 
-int function(int a, int b)
+char *get_char(char *a)
 {
-    int c = a % b;
-    if (c == 0)
-        return b;
-    else
-    {
-        return function(b, c);
-    }
+    printf("Name: ");
+    scanf("%s", a);
+    return a;
 }
