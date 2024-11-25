@@ -1,31 +1,40 @@
 #include <stdio.h>
 #include <math.h>
 
-int down(int a);
+int judge(int x);
 
 int main(void)
 {
-    double m, s, item;
-    double up = 1;
-    int i, sign = 1;
-    scanf("%lf", &m);
-    do
+    int count = 0;
+    for (int i = 4; i <= 2000; i = i + 2)
     {
-        up *= sign * m;
-        item = up / down(i);
-        s += item;
-        i++;
-        sign = -sign;
-    } while (fabs(item) >= 1e-4);
-    printf("%.2f\n", s);
+        for (int j = 2; j < 1000; j++)
+        {
+            if (judge(j) && judge(i - j))
+            {
+                printf("%4d=%4d+%4d", i, j, i - j);
+                count++;
+                if (count % 4 == 0)
+                    printf("\n");
+                else
+                    printf(" ");
+                break;
+            }
+        }
+    }
 }
 
-int down(int a)
+int judge(int x)
 {
-    int sum = 1;
-    for (int i = 1; i <= a; i++)
+    int i;
+    int y = (int)sqrt(x);
+    for (i = 2; i <= y; i++)
     {
-        sum = sum * i;
+        if (x % i == 0)
+            break;
     }
-    return sum;
+    if (i > y)
+        return 1;
+    else
+        return 0;
 }
